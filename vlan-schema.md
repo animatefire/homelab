@@ -1,11 +1,18 @@
 # VLAN Schema
 
-| VLAN                                 | Purpose                         | Subnet             | Example IPs                                | Notes                           |
-| ------------------------------------ | ------------------------------- | ------------------ | ------------------------------------------ | ------------------------------- |
-| **10 – Management**                  | Proxmox host mgmt, SSH, Web UI  | `10.0.<node>.0/24` | `10.0.1.10` (Node1), `10.0.2.10` (Node2)   | Used for cluster + admin access |
-| **20 – Cluster / Internal Services** | Corosync, migration, metrics    | `10.20.0.0/24`     | `10.20.1.10`, `10.20.1.11`                 | Optional, good for HA later     |
-| **30 – Storage**                     | NFS / ZFS replication / backups | `10.30.0.0/24`     | NAS = `10.30.0.2`, Nodes = `10.30.x.x`     | Jumbo-frames OK here            |
-| **40 – Apps / Servers**              | Plex, Radarr, Sonarr, Nextcloud | `10.40.0.0/24`     | `10.40.1.10` (Plex1), `10.40.2.10` (Plex2) | VMs/CTs connect here            |
-| **50 – DMZ / Proxy**                 | Caddy2 / public-facing          | `10.50.0.0/24`     | Reverse proxy = `10.50.0.2`                | Route-limited to LAN+WAN        |
-| **60 – IoT / Home Assistant**        | Smart devices                   | `10.60.0.0/24`     | HA OS = `10.60.0.10`                       | Strict firewall rules           |
-| **70 – Client LAN**                  | Desktops / laptops              | `10.70.0.0/24`     | Your desktop/laptop                        | Normal user access              |
+| VMID | Function Group | Hostname      | Static IP | Notes                     |
+| ---- | -------------- | ------------- | --------- | ------------------------- |
+| 001  | Infrastructure | `pve1`        | 10.0.0.2  | Proxmox Node 1            |
+| 002  | Infrastructure | `pve2`        | 10.0.0.3  | Proxmox Node 2            |
+| 101  | Monitoring     | `grafana`     | 10.0.1.2  | First in Monitoring range |
+| 201  | Storage        | `nfs`         | 10.0.2.2  | NAS/NFS Server            |
+| 301  | Net/Security   | `caddy`       | 10.0.3.2  | Reverse Proxy             |
+| 302  | Net/Security   | `wireguard`   | 10.0.3.3  | VPN endpoint              |
+| 401  | Media          | `plex`        | 10.0.4.2  | Plex server               |
+| 410  | Media          | `sonarr`      | 10.0.4.3  | Sonarr                    |
+| 420  | Media          | `radarr`      | 10.0.4.4  | Radarr                    |
+| 430  | Media          | `overseerr`   | 10.0.4.5  | Overseerr                 |
+| 501  | Cloud Apps     | `nextcloud`   | 10.0.5.2  | Self-hosted cloud         |
+| 601  | Automation     | `ansible`     | 10.0.6.2  | Automation control node   |
+| 701  | Testing        | `k3s-node`    | 10.0.7.2  | K3s worker node           |
+| 1001 | Template       | `tmpl-ubuntu` | —         | No IP assigned            |
