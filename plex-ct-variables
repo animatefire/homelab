@@ -1,0 +1,27 @@
+# Variables
+CTID=404
+TEMPLATE=local:vztmpl/debian-12-standard_12.12-1_amd64.tar.zst
+BRIDGE=vlan9
+ROOTFS_SIZE=50G     # give Plex metadata breathing room
+                                                       
+# Create privileged CT (note: no -unprivileged flag => privileged)
+pct create $CTID $TEMPLATE \
+  -hostname plex-lxc \
+  -cores 2 -memory 4096 -swap 1024 \
+  -rootfs local-lvm:${ROOTFS_SIZE} \
+  -features nesting=1,keyctl=1 \
+  -net0 name=eth0,bridge=${BRIDGE},ip=dhcp
+unable to create CT 404 - no such logical volume pve/50G
+root@pve2:/dev/dri# # Variables
+CTID=404
+TEMPLATE=local:vztmpl/debian-12-standard_12.12-1_amd64.tar.zst
+BRIDGE=vlan9
+ROOTFS_SIZE=50     # give Plex metadata breathing room
+                                                       
+# Create privileged CT (note: no -unprivileged flag => privileged)
+pct create $CTID $TEMPLATE \
+  -hostname enterprise-privileged-lxc \
+  -cores 2 -memory 4096 -swap 1024 \
+  -rootfs local-lvm:${ROOTFS_SIZE} \
+  -features nesting=1,keyctl=1 \
+  -net0 name=eth0,bridge=${BRIDGE},ip=dhcp
