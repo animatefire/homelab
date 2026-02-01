@@ -4,6 +4,8 @@
 | ---- | -------------- | ------------- | --------- | ------------------------- |
 | 001  | Infrastructure | `pve1`        | 10.0.0.2  | Proxmox Node 1            |
 | 002  | Infrastructure | `pve2`        | 10.0.0.3  | Proxmox Node 2            |
+| 003  | Infrastructure | `pve3`        | 10.0.0.4  | Proxmox Node 3            |
+| 004  | Infrastructure | `pve4`        | 10.0.0.5  | Proxmox Node 4            |
 | 101  | Monitoring     | `grafana`     | 10.0.1.2  | First in Monitoring range |
 | 201  | Storage        | `nfs`         | 10.0.2.2  | NAS/NFS Server            |
 | 301  | Net/Security   | `caddy`       | 10.0.3.2  | Reverse Proxy             |
