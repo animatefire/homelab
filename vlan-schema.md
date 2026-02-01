@@ -17,4 +17,5 @@
 | 601  | Automation     | `ansible`     | 10.0.6.2  | Automation control node   |
 | 701  | Testing        | `k3s-node`    | 10.0.7.2  | K3s worker node           |
 | 802  | Monitoring     | `grafana`     | 10.0.8.2  | First in Monitoring range |
+| 901  | Home Auto      | `haos`        | 10.0.9.2  | Home Assistant OS         |
 | 1001 | Template       | `tmpl-ubuntu` | —         | No IP assigned            |
