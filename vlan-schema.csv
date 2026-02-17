@@ -28,8 +28,10 @@ VLAN_ID,Function_Group,VMID,Hostname,Static_IP,Notes
 50,Net/Security,501,caddy,10.0.5.2,Reverse Proxy
 50,Net/Security,502,wireguard,10.0.5.3,VPN endpoint
 60,Cloud Apps,601,nextcloud,10.0.6.2,Self-hosted cloud
-70,Automation,701,ansible,10.0.7.2,Automation control node
+70,Automation,701,terraform,10.0.7.2,Automation control node
+70,Automation,702,ansible,10.0.7.3,Automation control node
 80,Testing,801,k3s-node,10.0.8.2,K3s worker node
-85,Monitoring,851,grafana,10.0.8.5,Grafana dashboard
 90,Home Auto,901,haos,10.0.9.2,Home Assistant OS
+110,Monitoring,1101,grafana,10.0.11.2,Grafana dashboard
+110,Monitoring,1102,prometheus,10.0.11.3,Prometheus
 ,Template,1001,tmpl-ubuntu,,Ubuntu template (no network)
