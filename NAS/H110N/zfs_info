@@ -1,0 +1,91 @@
+# ZFS Info
+
+zpool status -v
+zpool list
+zfs list -t all
+sudo zpool history
+
+## Export your pool config (not strictly necessary but good documentation)
+
+sudo zdb | head -100
+  pool: media
+ state: ONLINE
+  scan: scrub repaired 0B in 12:14:57 with 0 errors on Sun Feb  8 12:38:58 2026
+config:
+
+	NAME        STATE     READ WRITE CKSUM
+	media       ONLINE       0     0     0
+	  sdb       ONLINE       0     0     0
+
+errors: No known data errors
+NAME    SIZE  ALLOC   FREE  CKPOINT  EXPANDSZ   FRAG    CAP  DEDUP    HEALTH  ALTROOT
+media  14.5T  8.54T  6.01T        -         -     5%    58%  1.00x    ONLINE  -
+NAME    USED  AVAIL  REFER  MOUNTPOINT
+media  8.54T  5.89T  8.54T  /mnt/media
+History for 'media':
+2025-10-26.17:22:07 zpool create -f -o ashift=12 -O compression=lz4 -O atime=off -O recordsize=1M -O xattr=sa -O normalization=formD -m /mnt/plexmedia plexpool /dev/sdb
+2025-10-26.17:23:42 zpool export plexpool
+2025-10-26.17:23:49 zpool import plexpool media
+2025-10-26.17:24:16 zfs set mountpoint=/mnt/media media
+2025-10-30.17:39:18 zpool import -c /etc/zfs/zpool.cache -aN
+2025-10-30.18:02:21 zpool import -c /etc/zfs/zpool.cache -aN
+2025-10-30.18:04:07 zpool import -c /etc/zfs/zpool.cache -aN
+2025-10-30.18:07:32 zpool import -c /etc/zfs/zpool.cache -aN
+2025-10-31.02:00:37 zpool import -c /etc/zfs/zpool.cache -aN
+2025-10-31.02:04:08 zpool import -c /etc/zfs/zpool.cache -aN
+2025-10-31.14:01:09 zpool import -c /etc/zfs/zpool.cache -aN
+2025-11-04.01:34:16 zpool import -c /etc/zfs/zpool.cache -aN
+2025-11-04.18:21:46 zpool import -c /etc/zfs/zpool.cache -aN
+2025-11-09.00:24:07 zpool scrub media
+2025-11-22.00:39:23 zpool import -c /etc/zfs/zpool.cache -aN
+2025-12-10.21:18:37 zpool import -c /etc/zfs/zpool.cache -aN
+2025-12-14.00:24:09 zpool scrub media
+2025-12-30.00:35:20 zpool import -c /etc/zfs/zpool.cache -aN
+2026-01-06.09:46:06 zpool import -c /etc/zfs/zpool.cache -aN
+2026-01-11.00:24:10 zpool scrub media
+2026-01-17.00:54:22 zpool import -c /etc/zfs/zpool.cache -aN
+2026-02-07.15:49:14 zpool import -c /etc/zfs/zpool.cache -aN
+2026-02-07.16:02:37 zpool import -c /etc/zfs/zpool.cache -aN
+2026-02-07.16:12:39 zpool import -c /etc/zfs/zpool.cache -aN
+2026-02-07.16:17:32 zpool import -c /etc/zfs/zpool.cache -aN
+2026-02-07.16:27:32 zpool import -c /etc/zfs/zpool.cache -aN
+2026-02-08.00:24:08 zpool scrub media
+
+media:
+    version: 5000
+    name: 'media'
+    state: 0
+    txg: 1190822
+    pool_guid: 18280380997728169900
+    errata: 0
+    hostid: 1867724730
+    hostname: 'nas'
+    com.delphix:has_per_vdev_zaps
+    vdev_children: 1
+    vdev_tree:
+        type: 'root'
+        id: 0
+        guid: 18280380997728169900
+        create_txg: 4
+        com.klarasystems:vdev_zap_root: 66
+        children[0]:
+            type: 'disk'
+            id: 0
+            guid: 1590925352248932902
+            path: '/dev/sdb1'
+            devid: 'ata-ST16000NM001G-2KK103_ZL2KRCG8-part1'
+            phys_path: 'pci-0000:00:17.0-ata-3.0'
+            whole_disk: 1
+            metaslab_array: 128
+            metaslab_shift: 34
+            ashift: 12
+            asize: 16000885456896
+            is_log: 0
+            DTL: 9324
+            create_txg: 4
+            com.delphix:vdev_zap_leaf: 67
+            com.delphix:vdev_zap_top: 68
+    features_for_read:
+        com.delphix:hole_birth
+        com.delphix:embedded_data
+        com.klarasystems:vdev_zaps_v2
