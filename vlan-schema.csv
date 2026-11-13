@@ -36,3 +36,4 @@ VLAN_ID,Function_Group,VMID,Hostname,Static_IP,Notes
 110,Monitoring,1102,prometheus,10.0.11.3,Prometheus
 120,Web Hosting,1201,webhosts1,10.0.12.2,daggerheartxfate
 130,Labs,1301,gns3,10.0.13.2,GNS3 VM
+140, Filesharing,nextcloud,10.0.14.2,NextCloud AIO
