@@ -1,25 +1,41 @@
 # VLAN Schema
 
-| VMID | Function Group | Hostname      | Static IP | Notes                     |
-| ---- | -------------- | ------------- | --------- | ------------------------- |
-| 001  | Infrastructure | `pve1`        | 10.0.1.2  | Proxmox Node 1            |
-| 002  | Infrastructure | `pve2`        | 10.0.1.3  | Proxmox Node 2            |
-| 003  | Infrastructure | `pve3`        | 10.0.1.4  | Proxmox Node 3            |
-| 004  | Infrastructure | `pve4`        | 10.0.1.5  | Proxmox Node 4            |
-| 201  | Storage        | `nfs`         | 10.0.2.2  | NAS/NFS Server            |
-| 301  | Backup         | `pbs1`        | 10.0.3.2  | Proxmox Backup Server 1   |
-| 401  | Media          | `plex`        | 10.0.4.2  | Plex server               |
-| 410  | Media          | `sonarr`      | 10.0.4.3  | Sonarr                    |
-| 420  | Media          | `radarr`      | 10.0.4.4  | Radarr                    |
-| 430  | Media          | `overseerr`   | 10.0.4.5  | Overseerr                 |
-| 501  | Net/Security   | `caddy`       | 10.0.3.2  | Reverse Proxy             |
-| 502  | Net/Security   | `wireguard`   | 10.0.3.3  | VPN endpoint              |
-| 601  | Cloud Apps     | `nextcloud`   | 10.0.5.2  | Self-hosted cloud         |
-| 701  | Automation     | `ansible`     | 10.0.6.2  | Automation control node   |
-| 801  | Testing        | `k3s-node`    | 10.0.7.2  | K3s worker node           |
-| 802  | Monitoring     | `grafana`     | 10.0.8.2  | First in Monitoring range |
-| 901  | Home Auto      | `haos`        | 10.0.9.2  | Home Assistant OS         |
-| 1001 |                | `tmpl-ubuntu` | —         | No IP assigned            |
-| 1001 | Template       | `tmpl-ubuntu` | —         | No IP assigned            |
-| 1001 | Template       | `tmpl-ubuntu` | —         | No IP assigned            |
-| 1001 | Template       | `tmpl-ubuntu` | —         | No IP assigned            |
+| VLAN | Function Group | VMID | Hostname   | Static IP  | Notes                              |
+|-----:|----------------|-----:|------------|------------|------------------------------------|
+| 8    | Infrastructure | 001  | pve1       | 10.0.1.2   | Proxmox Node 1 - Management        |
+| 8    | Infrastructure | 002  | pve2       | 10.0.1.3   | Proxmox Node 2 - Management        |
+| 8    | Infrastructure | 003  | pve3       | 10.0.1.4   | Proxmox Node 3 - Management        |
+| 8    | Infrastructure | 004  | pve4       | 10.0.1.5   | Proxmox Node 4 - Management        |
+| 8    | Infrastructure | 005  | pve5       | 10.0.1.6   | Proxmox Node 5 - Management        |
+| 11   | Ceph Public    | 001  | pve1       | 10.0.11.2  | Proxmox Node 1 - Ceph Public       |
+| 11   | Ceph Public    | 002  | pve2       | 10.0.11.3  | Proxmox Node 2 - Ceph Public       |
+| 11   | Ceph Public    | 003  | pve3       | 10.0.11.4  | Proxmox Node 3 - Ceph Public       |
+| 11   | Ceph Public    | 004  | pve4       | 10.0.11.5  | Proxmox Node 4 - Ceph Public       |
+| 11   | Ceph Public    | 005  | pve5       | 10.0.11.6  | Proxmox Node 5 - Ceph Public       |
+| 12   | Ceph Cluster   | 001  | pve1       | 10.0.12.2  | Proxmox Node 1 - Ceph Replication  |
+| 12   | Ceph Cluster   | 002  | pve2       | 10.0.12.3  | Proxmox Node 2 - Ceph Replication  |
+| 12   | Ceph Cluster   | 003  | pve3       | 10.0.12.4  | Proxmox Node 3 - Ceph Replication  |
+| 12   | Ceph Cluster   | 004  | pve4       | 10.0.12.5  | Proxmox Node 4 - Ceph Replication  |
+| 12   | Ceph Cluster   | 005  | pve5       | 10.0.12.6  | Proxmox Node 5 - Ceph Replication  |
+| 13   | Corosync       | 001  | pve1       | 10.0.13.2  | Proxmox Node 1 - Cluster Heartbeat |
+| 13   | Corosync       | 002  | pve2       | 10.0.13.3  | Proxmox Node 2 - Cluster Heartbeat |
+| 13   | Corosync       | 003  | pve3       | 10.0.13.4  | Proxmox Node 3 - Cluster Heartbeat |
+| 13   | Corosync       | 004  | pve4       | 10.0.13.5  | Proxmox Node 4 - Cluster Heartbeat |
+| 13   | Corosync       | 005  | pve5       | 10.0.13.6  | Proxmox Node 5 - Cluster Heartbeat |
+| 20   | Storage        | 201  | nfs        | 10.0.2.2   | NAS/NFS Server                     |
+| 30   | Backup         | 301  | pbs1       | 10.0.3.2   | Proxmox Backup Server              |
+| 40   | Media          | 401  | plex       | 10.0.4.2   | Plex server                        |
+| 40   | Media          | 410  | sonarr     | 10.0.4.3   | Sonarr                             |
+| 40   | Media          | 420  | radarr     | 10.0.4.4   | Radarr                             |
+| 40   | Media          | 430  | overseerr  | 10.0.4.5   | Overseerr                          |
+| 50   | Net/Security   | 501  | caddy      | 10.0.5.2   | Reverse Proxy                      |
+| 50   | Net/Security   | 502  | wireguard  | 10.0.5.3   | VPN endpoint                       |
+| 60   | Cloud Apps     | 601  | nextcloud  | 10.0.6.2   | Self-hosted cloud                  |
+| 70   | Automation     | 701  | terraform  | 10.0.7.2   | Automation control node            |
+| 70   | Automation     | 702  | ansible    | 10.0.7.3   | Automation control node            |
+| 80   | Testing        | 801  | k3s-node   | 10.0.8.2   | K3s worker node                    |
+| 90   | Home Auto      | 901  | haos       | 10.0.9.2   | Home Assistant OS                  |
+| 110  | Monitoring     | 1101 | grafana    | 10.0.110.2  | Grafana dashboard                 |
+| 110  | Monitoring     | 1102 | prometheus | 10.0.110.3  | Prometheus                        |
+| 120  | Web Hosting    | 1201 | webhosts1  | 10.0.120.2  | daggerheartxfate                  |
+| 130  | Labs           | 1301 | gns3       | 10.0.130.2  | GNS3 VM                           |
